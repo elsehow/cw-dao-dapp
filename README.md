@@ -26,7 +26,7 @@ To do this we'll use [wasmd](https://github.com/CosmWasm/wasmd) running in a doc
 
 ### Setup Chain
 
-Make sure you install the `docker` locally. In a new terminal, clone the [cw-dao](https://github.com/DA0-DA0/cw-dao) repo, and run the deploy contracts script.
+Make sure you install the `docker` command-line tool and daemon locally (Mac users can [download it here](https://docs.docker.com/desktop/mac/install/)). In a new terminal, clone the [cw-dao](https://github.com/DA0-DA0/cw-dao) repo, and run the deploy contracts script.
 
 ```bash
 git clone https://github.com/DA0-DA0/cw-dao
