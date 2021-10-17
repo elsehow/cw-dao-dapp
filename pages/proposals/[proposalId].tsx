@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import LineAlert from 'components/LineAlert'
 import { VoteInfo, ProposalResponse } from 'types/cw3'
+import { defaultExecuteFee } from '../../defaultExecuteFee';
 
 const contractAddress = process.env.NEXT_PUBLIC_DAO_CONTRACT_ADDRESS || ''
 
@@ -103,13 +104,13 @@ const Proposal: NextPage = () => {
         setLoading(false)
         setError(err.message)
       })
-  }, [walletAddress, signingClient, contractAddress, proposalId, timestamp])
+  }, [walletAddress, signingClient, /*contractAddress, */proposalId, timestamp])
 
   const handleVote = async (vote: string) => {
     signingClient
       ?.execute(walletAddress, contractAddress, {
         vote: { proposal_id: parseInt(proposalId), vote },
-      })
+      }, defaultExecuteFee)
       .then((response) => {
         setTimestamp(new Date())
         setTransactionHash(response.transactionHash)
@@ -125,7 +126,7 @@ const Proposal: NextPage = () => {
     signingClient
       ?.execute(walletAddress, contractAddress, {
         execute: { proposal_id: parseInt(proposalId) },
-      })
+      }, defaultExecuteFee)
       .then((response) => {
         setTimestamp(new Date())
         setTransactionHash(response.transactionHash)
@@ -141,7 +142,7 @@ const Proposal: NextPage = () => {
     signingClient
       ?.execute(walletAddress, contractAddress, {
         close: { proposal_id: parseInt(proposalId) },
-      })
+      }, defaultExecuteFee)
       .then((response) => {
         setTimestamp(new Date())
         setTransactionHash(response.transactionHash)
