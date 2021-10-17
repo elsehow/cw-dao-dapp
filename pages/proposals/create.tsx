@@ -5,7 +5,7 @@ import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import LineAlert from 'components/LineAlert'
 import cloneDeep from 'lodash.clonedeep'
-
+import { defaultExecuteFee } from 'defaultExecuteFee';
 import { coins, StdFee } from '@cosmjs/stargate';
 
 interface FormElements extends HTMLFormControlsCollection {
@@ -49,11 +49,6 @@ const ProposalCreate: NextPage = () => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [proposalID, setProposalID] = useState('')
-
-  const defaultExecuteFee: StdFee = {
-    amount: coins(3000, process.env.NEXT_PUBLIC_STAKING_DENOM!),
-    gas: '333333',
-  };
 
   const handleSubmit = (event: FormEvent<ProposalFormElement>) => {
     event.preventDefault()
